@@ -1,17 +1,18 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css';
-import Login from './auth/Login';
+import "./App.css";
+import "@mdi/font/css/materialdesignicons.css";
+import "./plugins/Axios";
+import Login from "./auth/Login";
 
 function App() {
   return (
     <div className="">
-     <BrowserRouter>
- 
-     <Routes>
-       <Route path='/login' element={<Login/>} />
-     </Routes>
-     </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
