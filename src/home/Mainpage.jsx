@@ -5,6 +5,7 @@ import TimeAgo from "timeago-react";
 
 function MainPage() {
   document.title = "home";
+  const urlShare = `${global.baseURLs}/send/${global._id}`;
   const [post, setPost] = useState([]);
   const removepost = async (_id, index) => {
     try {
@@ -69,6 +70,13 @@ function MainPage() {
   return (
     <div className="mb-10">
       <div className="w-full max-w-md mx-auto  justify-center  ma-10">
+        <div className="pa-5 mt-10">
+          <input
+            type="text"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            value={`${urlShare}`}
+          />
+        </div>
         {displayPost}
       </div>
     </div>
