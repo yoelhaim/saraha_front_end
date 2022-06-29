@@ -1,5 +1,9 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8080";
+let baseURLs = "http://localhost:8080";
+if (window.location.hostname === "localhost")
+  baseURLs = "http://localhost:8080";
+else baseURLs = window.Location.origin;
+axios.defaults.baseURL = baseURLs;
 axios.defaults.headers.common["Authorization"] = "Bearer " + global.token;
 axios.defaults.validateStatus = (status) => status >= 200 && status < 399;
 
