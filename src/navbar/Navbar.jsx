@@ -36,12 +36,12 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <Link
-                to=""
+              <button
+                onClick={global.logOut}
                 className="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
               >
                 تسجيل الخروج
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
