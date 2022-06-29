@@ -11,6 +11,7 @@ import MainPage from "./home/Mainpage";
 import PrivateRoutes from "./protected/private";
 import PublicRoutes from "./protected/public";
 import Navbar from "./navbar/Navbar";
+import SendMessage from "./home/SendMessage";
 
 //gloval varaible
 global.token = localStorage.getItem("token");
@@ -34,6 +35,10 @@ global.logOut = async () => {
   localStorage.clear("user");
   window.location.href = "/login";
 };
+global.baseURLs = "";
+if (window.location.hostname === "localhost") {
+  global.baseURLs = "http://localhost:8080";
+} else global.baseURLs = window.Location.origin;
 // end global
 
 function App() {
@@ -41,11 +46,11 @@ function App() {
   useEffect(() => {
     let checkToken = localStorage.getItem("token");
     checkToken ? setAuth(true) : setAuth(false);
-    console.log(global._id);
   }, []);
   return (
     <div className="">
       <BrowserRouter>
+        {console.log(window.location)}
         <ToastContainer />
         <Navbar />
         <Routes>
@@ -56,7 +61,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
-
+          <Route path="send/:id" element={<SendMessage />}></Route>
           <Route
             path="*"
             element={<Navigate to={isAuth ? "/home" : "/login"} />}
