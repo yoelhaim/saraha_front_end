@@ -31,6 +31,8 @@ global.configTaost = {
 };
 global.logOut = async () => {
   localStorage.clear("token");
+  localStorage.clear("user");
+  window.location.href = "/login";
 };
 // end global
 
