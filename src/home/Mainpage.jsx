@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import TimeAgo from "timeago-react";
 
 function MainPage() {
   document.title = "home";
-  const urlShare = `${global.baseURLs}/send/${global._id}`;
+  const urlShare = `/send/${global._id}`;
   const [post, setPost] = useState([]);
   const removepost = async (_id, index) => {
     try {
@@ -70,12 +71,20 @@ function MainPage() {
   return (
     <div className="mb-10">
       <div className="w-full max-w-md mx-auto  justify-center  ma-10">
-        <div className="pa-5 mt-10">
+        <div className="pa-5 mt-10 flex">
           <input
             type="text"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            value={`${urlShare}`}
+            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            value={`${global.baseURLs}${urlShare}`}
           />
+          <Link to={`${urlShare}`}>
+            <button
+              type="button"
+              class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-1"
+            >
+              <i className="mdi mdi-link"></i>
+            </button>
+          </Link>
         </div>
         {displayPost}
       </div>
