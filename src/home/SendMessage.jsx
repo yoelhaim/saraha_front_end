@@ -2,12 +2,15 @@ import axios from "axios";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import IconLoading from "../assets/icons/laoding";
 
 function SendMessage() {
   let { id } = useParams();
   const [msg, setMsg] = useState("");
+  const [loading, setLaoding] = useState(false);
   const sendMessage = async (e) => {
     e.preventDefault();
+    setLaoding(true);
     try {
       const sendData = await axios.post(`/msg/send`, {
         userId: id,
@@ -16,15 +19,15 @@ function SendMessage() {
       if (sendData)
         toast.success("successfully send message private", global.configToast);
       document.getElementById("message").value = "";
+      setLaoding(false);
     } catch ({ response }) {
       toast.error(response?.data.message, global.configToast);
+      setLaoding(false);
     }
   };
   return (
     <div className="w-full max-w-md mx-auto  justify-center p-6 bg-white rounded-lg border border-gray-200 shadow-md mt-10">
       <form onSubmit={sendMessage}>
-        {id}
-
         <label
           htmlFor="message"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
@@ -43,6 +46,7 @@ function SendMessage() {
             type="submit"
             className="w-2/1 text-white bg-blue-700 hover:bg-blue-800 focus:outline  font-medium rounded-xl text-sm px-5 py-2.5 text-center mr-2 mb-2 "
           >
+            {loading ? <IconLoading /> : null}
             إرسال
           </button>
         </div>
