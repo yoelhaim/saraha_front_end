@@ -38,7 +38,7 @@ global.logOut = async () => {
 global.baseURLs = "";
 if (window.location.hostname === "localhost") {
   global.baseURLs = "http://localhost:8080";
-} else global.baseURLs = window.Location.origin;
+} else global.baseURLs = window.location.origin;
 // end global
 
 function App() {
