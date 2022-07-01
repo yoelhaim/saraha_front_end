@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 const Login = ({ authenticate }) => {
@@ -8,15 +7,41 @@ const Login = ({ authenticate }) => {
   document.title = "Login";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const data = urlParams.get("success");
-  if (data) {
-    const decrypt = atob(data);
-    let splitData = decrypt.split("_");
-    console.log(splitData);
-  }
-
+  const checkuserlogin = async (data) => {
+    console.log(data);
+    try {
+      const checkData = await axios.post("/response", {
+        token: data,
+      });
+      console.log(`tokeeeeeeen ${data}`);
+      if (checkData) {
+        localStorage.setItem("token", data);
+        localStorage.setItem("user", JSON.stringify(checkData.data.user));
+        let user = checkData.data.user;
+        global.username = user["userName"];
+        global.userId = user["userId"];
+        global._id = user["_id"];
+        global.email = user["email"];
+        global.fname = user["firstName"];
+        global.lname = user["lastName"];
+        global.token = data;
+        toast.success("success login ", global.configTaost);
+        nav("/home");
+      } else {
+        toast.error("errrorrr", global.configTaost);
+      }
+    } catch ({ response }) {
+      toast.error(response?.data.message, global.configTaost);
+    }
+  };
+  useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const data = urlParams.get("success");
+    if (data) {
+      checkuserlogin(data);
+    }
+  }, []);
   const loginAccount = async (e) => {
     e.preventDefault();
     try {
