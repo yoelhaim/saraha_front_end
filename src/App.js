@@ -50,7 +50,7 @@ function App() {
   return (
     <div className="">
       <BrowserRouter>
-        {console.log(window.location)}
+        {/* {console.log(window.location)} */}
         <ToastContainer />
         <Navbar />
         <Routes>
