@@ -39,7 +39,7 @@ function MainPage() {
     return (
       <div
         key={index}
-        className=" p-6 bg-white rounded-lg border border-gray-200 shadow-md mt-10"
+        className=" p-6 bg-white rounded-lg border border-gray-200 shadow-md mt-3"
       >
         <div className="flex items-center space-x-4">
           <div className="flex-shrink-0">
@@ -70,22 +70,55 @@ function MainPage() {
 
   return (
     <div className="mb-10">
-      <div className="w-full max-w-md mx-auto  justify-center  ma-10">
-        <div className="pa-5 mt-10 flex">
-          <input
-            type="text"
-            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            value={`${global.baseURLs}${urlShare}`}
-          />
-          <Link to={`${urlShare}`}>
-            <button
-              type="button"
-              class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-1"
-            >
-              <i className="mdi mdi-link"></i>
-            </button>
-          </Link>
+      <div className="bg-gray-200 mt-1 pa-4">
+        <div className=" w-full max-w-md mx-auto">
+          <div className="justify-center text-center ">
+            <i className="mdi mdi-account-circle-outline mdi-48px"></i>
+            <div>
+              <h3 className="text-2xl">
+                {global.fname} {global.lname}
+              </h3>
+            </div>
+          </div>
+          <div className=" mt-5 flex">
+            <input
+              type="text"
+              className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              value={`${global.baseURLs}${urlShare}`}
+            />
+            <Link to={`${urlShare}`}>
+              <button
+                type="button"
+                class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-1"
+              >
+                <i className="mdi mdi-link"></i>
+              </button>
+            </Link>
+          </div>
+          <div className="text-center mt-3 mb-4">
+            <h4 className="">شارك الرابط وابدأ بتلقي الرسائل والصراحات</h4>
+          </div>
         </div>
+      </div>
+
+      <div className="w-full max-w-md mx-auto  justify-center  m-10">
+        <div className="card bg-white p-5 text-center">
+          <div>
+            <h2>شارك الرابط الخاص بك بنقرة واحدة </h2>
+            <div className="flex justify-center">
+              <i className="mdi mdi-facebook mdi-36px ml-4"></i>
+              <i className="mdi mdi-instagram mdi-36px ml-4"></i>
+              <i className="mdi mdi-whatsapp mdi-36px ml-4"></i>
+              <i className="mdi mdi-facebook mdi-36px ml-4"></i>
+            </div>
+          </div>
+        </div>
+
+        <p className="mt-5">
+          {" "}
+          <i className="mdi mdi-message mdi-24px"></i>
+          الرسائل الخاصة بك :
+        </p>
         {displayPost}
       </div>
     </div>
