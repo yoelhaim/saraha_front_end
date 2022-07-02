@@ -8,6 +8,7 @@ function MainPage() {
   document.title = "home";
   const urlShare = `/send/${global._id}`;
   const [post, setPost] = useState([]);
+  const [leng, setLen] = useState(false);
   const removepost = async (_id, index) => {
     try {
       const removed = await axios.put(`/msg//delete/${_id}`);
@@ -27,7 +28,9 @@ function MainPage() {
           userId: global.userId,
         }
       );
-      setPost(getPosts.data);
+
+      if (getPosts.data.length > 0) setPost(getPosts.data);
+      else setLen(true);
     } catch (error) {
       toast.error("error get data", global.configTaost);
     }
@@ -35,6 +38,19 @@ function MainPage() {
   useEffect(() => {
     getpost();
   }, []);
+  const loadpost = (
+    <div className="text-center justify-center ">
+      <i className="mdi mdi-loading mdi-spin mdi-48px text-red-500"></i>
+    </div>
+  );
+  const nopost = (
+    <div className="mt-4">
+      <div className="p-4 mb-4 text-sm text-red-700 text-center text-bold bg-red-100 rounded-lg">
+        {" "}
+        لا توجد أي رسائل مرسلة لك شارك الرابط الخاص بك
+      </div>
+    </div>
+  );
   const displayPost = post.map((element, index) => {
     return (
       <div
@@ -117,9 +133,9 @@ function MainPage() {
         <p className="mt-5">
           {" "}
           <i className="mdi mdi-message mdi-24px"></i>
-          الرسائل الخاصة بك :
+          الرسائل الخاصة بك {post.length} :
         </p>
-        {displayPost}
+        {leng ? nopost : post.length ? displayPost : loadpost}
       </div>
     </div>
   );
