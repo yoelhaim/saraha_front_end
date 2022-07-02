@@ -7,13 +7,22 @@ import IconLoading from "../assets/icons/laoding";
 function SendMessage() {
   let { id } = useParams();
   const [msg, setMsg] = useState("");
-  const nav = useNavigate();
+  const [isyou, SetYou] = useState(false);
   const [loading, setLaoding] = useState(false);
   useEffect(() => {
-    if (id === global.userId) nav("/home");
-  });
+    if (id === global._id) {
+      SetYou(true);
+    }
+  }, []);
   const sendMessage = async (e) => {
     e.preventDefault();
+    if (isyou) {
+      toast.warning(
+        "لا يمكنك أن تصارح نفسك شارك مع أصدقائك",
+        global.configToast
+      );
+      return false;
+    }
     setLaoding(true);
     document.getElementById("sender").disabled = true;
     try {
