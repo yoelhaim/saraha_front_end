@@ -79,7 +79,7 @@ const Login = ({ authenticate }) => {
     }
   };
   return (
-    <div className="mt-40">
+    <div className="mt-9 md:mt-40 m-4 md:m-0">
       <div className="w-full max-w-md mx-auto  justify-center p-6 bg-white rounded-lg border border-gray-200 shadow-md mt-10">
         <h1 className="text-lg">
           <i className="mdi mdi-account-supervisor-circle-outline"></i> تسجيل
@@ -131,7 +131,7 @@ const Login = ({ authenticate }) => {
             </button>
           </div>
           <div className="mt-3 mx-auto  justify-center text-center">
-            <a href="http://localhost:8080/authen">
+            <a href="/authen">
               {" "}
               <button
                 type="button"
